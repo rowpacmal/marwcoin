@@ -1,0 +1,1 @@
+The `middlewares` folder should contain functions that process requests before they reach the route handlers. This structure allows for reusable and modular code, enhancing the application's flexibility and maintainability.

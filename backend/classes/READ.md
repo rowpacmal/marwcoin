@@ -1,0 +1,1 @@
+The `classes` folder should contain custom classes that encapsulate specific functionalities or business logic. This structure helps organize and modularize complex logic, making the codebase more maintainable and scalable.
