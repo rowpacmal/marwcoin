@@ -40,4 +40,7 @@ const Block = class {
 			difficulty,
 		});
 	}
+
+	// TODO: Need to implement difficulty level adjustment at a later time.
+	// Right now the difficulty level is hardcode into the genesis block.
 };
