@@ -27,14 +27,7 @@ const Block = class {
 		do {
 			timestamp = Date.now();
 			nonce++;
-			hash = createHash(
-				index,
-				timestamp,
-				prevHash,
-				data,
-				nonce,
-				difficulty
-			);
+			hash = createHash(index, timestamp, prevHash, data, nonce, difficulty);
 		} while (!hash.startsWith('0'.repeat(difficulty)));
 
 		return new this({
