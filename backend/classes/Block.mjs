@@ -15,6 +15,36 @@ const Block = class {
 	static get genesis() {
 		return new this(genesisBlock);
 	}
-};
 
-export default Block;
+	static mineBlock({ prevBlock, data }) {
+		const index = +prevBlock.index + 1;
+		const prevHash = prevBlock.hash;
+
+		let { difficulty } = prevBlock;
+		let timestamp, hash;
+		let nonce = 1024;
+
+		do {
+			timestamp = Date.now();
+			nonce++;
+			hash = createHash(
+				index,
+				timestamp,
+				prevHash,
+				data,
+				nonce,
+				difficulty
+			);
+		} while (!hash.startsWith('0'.repeat(difficulty)));
+
+		return new this({
+			index,
+			timestamp,
+			prevHash,
+			hash,
+			data,
+			nonce,
+			difficulty,
+		});
+	}
+};
