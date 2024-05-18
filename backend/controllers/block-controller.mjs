@@ -4,13 +4,13 @@ import Block from '../classes/Block.mjs';
 const blockchain = { chain: [Block.genesis] };
 
 export const getBlockByIndex = (req, res, next) => {
-	const block = blockchain.chain.find((b) => b.index === req.params.index);
+	const index = +req.params.index;
+	const block = blockchain.chain.find((b) => b.index === index);
 
 	if (!block) {
 		// for testing purposes
 		res.status(404).json({
-			error:
-				'An error occurred when searching for the block. There is no block with that index...',
+			error: `An error occurred when searching for the block. There is no block with the index ${index}...`,
 		});
 		return;
 
