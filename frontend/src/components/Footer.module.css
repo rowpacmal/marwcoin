@@ -7,18 +7,18 @@
 	filter: drop-shadow(-4px 0 4px rgba(0, 0, 0, 0.25));
 }
 
-.footer-wrapper {
+.wrapper {
 	max-width: 1280px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 }
 
-.footer-ul {
+.ul {
 	min-height: 8rem;
 }
 
-.footer-link {
+.link {
 	color: inherit;
 
 	border-bottom: #faf3e3 1px solid;
@@ -27,12 +27,12 @@
 		border-color 0.2s;
 }
 
-.footer-link:hover {
+.link:hover {
 	color: #e15822;
 	border-color: #e15822;
 	text-decoration: none;
 }
 
-.footer-copyright {
+.copyright {
 	align-self: flex-end;
 }
