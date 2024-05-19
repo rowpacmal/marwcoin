@@ -24,6 +24,12 @@ export const getBlockByIndex = (req, res, next) => {
 	res.status(200).json({ data: block });
 };
 
+export const getLatestBlock = (req, res, next) => {
+	const block = blockchain.chain.at(-1);
+
+	res.status(200).json({ data: block });
+};
+
 export const createBlock = (req, res, next) => {
 	const data = req.body;
 
