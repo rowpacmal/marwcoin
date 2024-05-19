@@ -1,11 +1,23 @@
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
+import { useEffect, useState } from 'react';
 
 export const Header = () => {
+	const [scrollPosition, setScrollPosition] = useState(window.scrollY);
+
+	useEffect(() => {
+		window.addEventListener('scroll', () => {
+			setScrollPosition(window.scrollY);
+		});
+	}, []);
+
 	return (
 		<header className="header">
 			<div className="header-wrapper">
-				<Link to="/" className="header-logo">
+				<Link
+					to="/"
+					className={'header-logo' + (scrollPosition > 100 ? ' hide-logo' : '')}
+				>
 					<img
 						src="./src/assets/Logo3.png"
 						alt="Marw Logo"
