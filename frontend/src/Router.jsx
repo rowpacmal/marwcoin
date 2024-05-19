@@ -1,5 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "./Layout";
+import { createBrowserRouter } from 'react-router-dom';
+import { Layout } from './Layout';
+import { Home } from './pages/Home';
+import { GetBlock } from './pages/GetBlock';
+import { ListBlocks } from './pages/ListBlocks';
+import { Transactions } from './pages/Transactions';
+import { NotFound } from './pages/NotFound';
 
 // You can add new routes in the children array to render pages.
 
@@ -8,8 +13,23 @@ import { Layout } from "./Layout";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
-    children: [],
+    errorElement: <NotFound />,
+    children: [
+      { index: true, element: <Home /> },
+      {
+        path: '/getBlock',
+        element: <GetBlock />,
+      },
+      {
+        path: '/transactions',
+        element: <Transactions />,
+      },
+      {
+        path: '/listBlocks',
+        element: <ListBlocks />,
+      },
+    ],
   },
 ]);
