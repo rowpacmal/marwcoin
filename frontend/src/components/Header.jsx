@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export const Header = () => {
 	const [scrollPosition, setScrollPosition] = useState(window.scrollY);
+	const threshold = 160;
 
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
@@ -12,11 +13,15 @@ export const Header = () => {
 	}, []);
 
 	return (
-		<header className="header">
+		<header
+			className={'header' + (scrollPosition > threshold ? ' scroll-top' : '')}
+		>
 			<div className="header-wrapper">
 				<Link
 					to="/"
-					className={'header-logo' + (scrollPosition > 100 ? ' hide-logo' : '')}
+					className={
+						'header-logo' + (scrollPosition > threshold ? ' hide-logo' : '')
+					}
 				>
 					<img
 						src="./src/assets/Logo3.png"
