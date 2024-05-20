@@ -1,0 +1,38 @@
+.footer {
+	color: #faf3e3;
+	background-color: #000;
+	width: 100%;
+	margin-top: auto;
+	padding: 3rem;
+	filter: drop-shadow(-4px 0 4px rgba(0, 0, 0, 0.25));
+}
+
+.wrapper {
+	max-width: 1280px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.ul {
+	min-height: 8rem;
+}
+
+.link {
+	color: inherit;
+
+	border-bottom: #faf3e3 1px solid;
+	transition:
+		color 0.2s,
+		border-color 0.2s;
+}
+
+.link:hover {
+	color: #e15822;
+	border-color: #e15822;
+	text-decoration: none;
+}
+
+.copyright {
+	align-self: flex-end;
+}
