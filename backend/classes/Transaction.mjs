@@ -1,33 +1,38 @@
-import { createHash } from '../utils/crypto-lib.mjs';
+import { createHash } from "../utils/crypto-lib.mjs";
 
 class Transaction {
     constructor(sender, receiver, payload) {
         this.timestamp = Date.now();
         this.sender = sender;
         this.receiver = receiver;
-        this.payload = typeof payload !== "string" 
-            ? JSON.stringify(payload) 
+        this.payload = typeof payload !== "string"
+            ? JSON.stringify(payload)
             : payload;
-        this.hash = createHash(this.timestamp, this.sender, this.receiver, this.payload);
+        this.hash = createHash(
+            this.timestamp,
+            this.sender,
+            this.receiver,
+            this.payload,
+        );
     }
 
-    get timestamp() {
+    get getTimestamp() {
         return this.timestamp;
     }
 
-    get sender() {
+    get getSender() {
         return this.sender;
     }
 
-    get receiver() {
+    get getReceiver() {
         return this.receiver;
     }
 
-    get payload() {
+    get getPayload() {
         return this.payload;
     }
 
-    get hash() {
+    get getHash() {
         return this.hash;
     }
 }
