@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(window.scrollY);
   const threshold = 160;
 
@@ -11,6 +12,10 @@ export const Header = () => {
       setScrollPosition(window.scrollY);
     });
   }, []);
+
+  const showMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const onScroll = (style) => {
     return scrollPosition > threshold ? ` ${style}` : '';
@@ -35,8 +40,16 @@ export const Header = () => {
           />
         </Link>
 
-        <nav className={styles.nav}>
-          <ul className={styles.ul}>
+        <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
+          <button
+            className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}
+            onClick={showMenu}
+          >
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+          </button>
+          <ul className={`${styles.ul} ${isOpen ? styles.open : ''}`}>
             <li className={styles.li}>
               <NavLink
                 to='/'
