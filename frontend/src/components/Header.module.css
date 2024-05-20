@@ -23,9 +23,6 @@
 }
 
 .logo {
-  position: absolute;
-  left: 2rem;
-  top: 2rem;
   filter: drop-shadow(var(--shadow));
   transition:
     scale 0.2s,
@@ -47,9 +44,6 @@
 }
 
 .nav {
-  position: absolute;
-  right: 0;
-  top: 2rem;
   color: #faf3e3;
   background-color: #000;
   filter: drop-shadow(var(--shadow));
@@ -95,30 +89,29 @@
 }
 
 @media screen and (max-width: 950px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+
   .nav {
     z-index: 8;
     height: 7rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 2rem;
-    width: 15dvw; /* Add this line */
-    overflow: hidden; /* Add this line */
-    transition: width 0.6s ease-out;
-    transition: height 0.6s ease-out;
+    width: 150px;
+    overflow: hidden;
+    transition:
+      width 0.6s,
+      height 0.6s ease-out;
   }
 
   .nav.open {
     height: 100dvh;
-    width: 30dvw;
-    transition: width 0.6s ease-in;
-    transition: height 0.6s ease-in;
+    width: 250px;
   }
 
   .hamburger {
-    position: absolute;
-    top: 1.3rem; /* Adjust as needed */
-    right: 2rem; /* Adjust as needed */
     display: block;
     z-index: 10;
     background-color: inherit;
