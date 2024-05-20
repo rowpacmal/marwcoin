@@ -1,0 +1,52 @@
+.homeContainer {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.homeImage {
+  width: 50dvw;
+  height: 100dvh;
+  object-fit: cover;
+  border-radius: 0 2rem 0 0;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: #10316b;
+  font-size: 6rem;
+  font-family: 'Inter', sans-serif;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+}
+
+.description {
+  background-color: #10316b;
+  color: white;
+  padding: 1rem 3rem;
+  font-size: 2.4rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.breadText {
+  padding: 2rem;
+  font-size: 1.5rem;
+  font-family: 'Inter';
+  font-weight: 500;
+}
+
+@media screen and (min-width: 1280px) {
+  .homeImage {
+    border-radius: 2rem 2rem 0 0;
+  }
+
+  .description {
+    border-radius: 0 2rem 2rem 0;
+  }
+}

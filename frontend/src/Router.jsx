@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Layout } from './pages/Layout';
 import { Home } from './pages/Home';
-import { GetBlock } from './pages/GetBlock';
 import { ListBlocks } from './pages/ListBlocks';
-import { Transactions } from './pages/Transactions';
+import { Transaction } from './pages/Transaction';
 import { NotFound } from './pages/NotFound';
+import { About } from './pages/About';
+import { Contact } from './pages/Contact';
 
 // You can add new routes in the children array to render pages.
 
@@ -19,16 +20,20 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: '/getBlock',
-        element: <GetBlock />,
+        path: '/transaction',
+        element: <Transaction />,
       },
       {
-        path: '/transactions',
-        element: <Transactions />,
-      },
-      {
-        path: '/listBlocks',
+        path: '/blocks',
         element: <ListBlocks />,
+      },
+      {
+        path: '/about',
+        element: <About />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
       },
     ],
   },
