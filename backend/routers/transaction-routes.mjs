@@ -8,7 +8,6 @@ import {
 } from '../controllers/transactionsController.mjs';
 
 const router = express.Router();
-const myBlockchain = new Blockchain();
 
 router.route('/listTransactions').get(listTransactions);
 
