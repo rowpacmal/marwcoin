@@ -1,20 +1,20 @@
-import express from 'express';
-import Blockchain from '../models/blockchain.mjs';
-import { 
-    listTransactions, 
-    addTransaction, 
-    getTransaction, 
-    deleteTransaction 
-} from '../controllers/transactionsController.mjs';
+import express from "express";
+import {
+    getTransactionByHash,
+    getLatestTransaction,
+    getTransactionsInBlock,
+    createTransaction,
+} from "../controllers/transactionsController.mjs";
 
-const router = express.Router();
+const transactionRouter = express.Router();
 
-router.route('/listTransactions').get(listTransactions);
+transactionRouter
+    .route("/")
+    .get(getTransactionsInBlock)
+    .post(createTransaction);
 
-router.route('/addTransaction').post(addTransaction);
+transactionRouter.route("/latest").get(getLatestTransaction);
 
-router.route('/getTransaction/:id').get(getTransaction);
+transactionRouter.route("/:txHash").get(getTransactionByHash);
 
-router.route('/deleteTransaction/:id').delete(deleteTransaction);
-
-export default router;
+export default transactionRouter;
