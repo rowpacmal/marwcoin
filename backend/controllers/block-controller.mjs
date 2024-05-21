@@ -3,36 +3,38 @@ import Block from '../classes/Block.mjs';
 import ErrorResponse from '../classes/ErrorResponse.mjs';
 import ResponseData from '../classes/ResponseData.mjs';
 
-export const getBlockByIndex = (req, res, next) => {
-	const index = +req.params.index;
-	const block = blockchain.chain.find((b) => b.index === index);
+const findBlock = (prop, param, next) => {
+	const block = blockchain.chain.find((block) => block[prop] === param);
 
 	if (!block) {
-		return next(
-			new ErrorResponse(
-				`An error occurred when searching for the block. There is no block with the index ${index}...`,
-				404
-			)
-		);
+		return next(new ErrorResponse('No block was found', 404));
 	}
 
-	res
-		.status(200)
-		.json(
-			new ResponseData(
-				`Successfully find a block with the index ${index}.`,
-				200,
-				block
-			)
-		);
+	return block;
+};
+
+export const getAllBlocks = (req, res, next) => {
+	res.status(200).json(new ResponseData('Blocks found', 200, blockchain.chain));
 };
 
 export const getLatestBlock = (req, res, next) => {
-	const block = blockchain.chain.at(-1);
-
 	res
 		.status(200)
-		.json(new ResponseData('Successfully find the latest block.', 200, block));
+		.json(new ResponseData('Block found', 200, blockchain.getLatestBlock));
+};
+
+export const getBlockByIndex = (req, res, next) => {
+	const { index } = req.params;
+	const block = findBlock('index', +index, next);
+
+	res.status(200).json(new ResponseData('Block found', 200, block));
+};
+
+export const getBlockByHash = (req, res, next) => {
+	const { hash } = req.params;
+	const block = findBlock('hash', hash, next);
+
+	res.status(200).json(new ResponseData('Block found', 200, block));
 };
 
 export const createBlock = (req, res, next) => {
@@ -47,8 +49,7 @@ export const createBlock = (req, res, next) => {
 		);
 	}
 
-	const prevBlock = blockchain.chain.at(-1);
-	const block = Block.mineBlock({ prevBlock, data });
+	const block = Block.mineBlock(blockchain.getLatestBlock, data);
 
 	blockchain.chain.push(block);
 
