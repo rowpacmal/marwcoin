@@ -3,7 +3,7 @@ const genesisBlock = {
 	timestamp: Date.now(),
 	prevHash: null,
 	hash: '0',
-	data: [],
+	transactions: [],
 	nonce: 0,
 	difficulty: 2,
 };

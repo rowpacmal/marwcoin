@@ -2,24 +2,47 @@ import { createHash } from '../utils/cryptoLib.mjs';
 import genesisBlock from '../utils/genesisBlock.mjs';
 
 const Block = class {
-	constructor(index, timestamp, prevHash, hash, data, nonce, difficulty) {
+	constructor(
+		index,
+		timestamp,
+		prevHash,
+		hash,
+		transactions,
+		nonce,
+		difficulty
+	) {
 		this.index = index;
 		this.timestamp = timestamp;
 		this.prevHash = prevHash;
 		this.hash = hash;
-		this.data = data;
+		this.transactions = transactions;
 		this.nonce = nonce;
 		this.difficulty = difficulty;
 	}
 
 	static get createGenesis() {
-		const { index, timestamp, prevHash, hash, data, nonce, difficulty } =
-			genesisBlock;
+		const {
+			index,
+			timestamp,
+			prevHash,
+			hash,
+			transactions,
+			nonce,
+			difficulty,
+		} = genesisBlock;
 
-		return new this(index, timestamp, prevHash, hash, data, nonce, difficulty);
+		return new this(
+			index,
+			timestamp,
+			prevHash,
+			hash,
+			transactions,
+			nonce,
+			difficulty
+		);
 	}
 
-	static mineBlock(prevBlock, data) {
+	static mineBlock(prevBlock, transactions) {
 		const index = +prevBlock.index + 1;
 		const prevHash = prevBlock.hash;
 
@@ -30,10 +53,25 @@ const Block = class {
 		do {
 			timestamp = Date.now();
 			nonce++;
-			hash = createHash(index, timestamp, prevHash, data, nonce, difficulty);
+			hash = createHash(
+				index,
+				timestamp,
+				prevHash,
+				transactions,
+				nonce,
+				difficulty
+			);
 		} while (!hash.startsWith('0'.repeat(difficulty)));
 
-		return new this(index, timestamp, prevHash, hash, data, nonce, difficulty);
+		return new this(
+			index,
+			timestamp,
+			prevHash,
+			hash,
+			transactions,
+			nonce,
+			difficulty
+		);
 	}
 
 	// TODO: Need to implement difficulty level adjustment at a later time.
