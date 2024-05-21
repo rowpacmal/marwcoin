@@ -5,10 +5,10 @@ import {
 	getLatestBlock,
 } from '../controllers/block-controller.mjs';
 
-const router = express.Router();
+const blockRouter = express.Router();
 
-router.route('/mine').post(createBlock);
-router.route('/latest').get(getLatestBlock);
-router.route('/:index').get(getBlockByIndex);
+blockRouter.route('/mine').post(createBlock);
+blockRouter.route('/latest').get(getLatestBlock);
+blockRouter.route('/:index').get(getBlockByIndex);
 
-export default router;
+export default blockRouter;
