@@ -5,6 +5,8 @@ import cors from 'cors';
 import blockchainRouter from './routers/blockchain-routes.mjs';
 import transactionRouter from './routers/transaction-routes.mjs';
 import blockRouter from './routers/block-routes.mjs';
+
+import resourceNotFound from './utils/resourceNotFound.mjs';
 import errorHandler from './middlewares/errorHandler.mjs';
 
 const app = express();
@@ -19,6 +21,7 @@ app.use('/api/v1/blockchain', blockchainRouter);
 app.use('/api/v1/transactions', transactionRouter);
 app.use('/api/v1/blocks', blockRouter);
 
+app.all('*', resourceNotFound);
 app.use(errorHandler);
 
 app.listen(PORT, (err) => {
