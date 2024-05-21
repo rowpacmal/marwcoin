@@ -1,4 +1,4 @@
-import { createHash } from '../utils/crypto-lib.mjs';
+import { createHash } from '../utils/cryptoLib.mjs';
 import genesisBlock from '../utils/genesisBlock.mjs';
 
 const Block = class {
