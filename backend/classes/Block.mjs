@@ -20,7 +20,7 @@ const Block = class {
 		this.difficulty = difficulty;
 	}
 
-	static get createGenesis() {
+	static get getGenesis() {
 		const {
 			index,
 			timestamp,

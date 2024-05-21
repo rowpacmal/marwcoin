@@ -3,7 +3,7 @@ import Transaction from './Transaction.mjs';
 
 class Blockchain {
 	constructor() {
-		this.chain = [Block.createGenesis];
+		this.chain = [Block.getGenesis];
 		this.pendingTransactions = [];
 		this.miningReward = 100;
 	}
@@ -22,12 +22,13 @@ class Blockchain {
 			minerAddress,
 			this.miningReward
 		);
+
 		this.pendingTransactions.push(rewardTransaction);
 
-		const block = Block.mineBlock({
-			prevBlock: this.getLatestBlock,
-			data: this.pendingTransactions,
-		});
+		const block = Block.mineBlock(
+			this.getLatestBlock,
+			this.pendingTransactions
+		);
 
 		this.chain.push(block);
 

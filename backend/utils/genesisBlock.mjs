@@ -1,6 +1,6 @@
 const genesisBlock = {
 	index: 1,
-	timestamp: Date.now(),
+	timestamp: 1,
 	prevHash: null,
 	hash: '0',
 	transactions: [],
