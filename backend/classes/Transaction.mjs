@@ -5,14 +5,20 @@ class Transaction {
 		this.timestamp = Date.now();
 		this.sender = sender;
 		this.receiver = receiver;
-		this.payload =
-			typeof payload !== 'string' ? JSON.stringify(payload) : payload;
+		this.payload = payload;
 		this.hash = createHash(
 			this.timestamp,
 			this.sender,
 			this.receiver,
-			this.payload
+			this.stringifyPayload(this.payload)
 		);
+	}
+
+	stringifyPayload(payload) {
+		if (typeof payload !== "string") {
+			return JSON.stringify(payload);
+		}
+		return payload;
 	}
 
 	get getTimestamp() {

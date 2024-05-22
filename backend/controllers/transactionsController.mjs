@@ -2,6 +2,7 @@ import { blockchain } from '../app.mjs';
 import Transaction from '../classes/Transaction.mjs';
 import ResponseData from '../classes/ResponseData.mjs';
 import ErrorResponse from '../classes/ErrorResponse.mjs';
+import Currency from '../classes/Currency.mjs';
 
 export const getTransactionByHash = (req, res, next) => {
 	try {
@@ -83,9 +84,7 @@ export const createTransaction = (req, res, next) => {
 				);
 		}
 
-		const transaction = new Transaction(sender, receiver, payload);
-		// blockchain?.chain?.at(-1).transactions?.push(transaction);
-
+		const transaction = new Transaction(sender, receiver, new Currency(payload));
 		blockchain?.addTransaction(transaction);
 
 		res
