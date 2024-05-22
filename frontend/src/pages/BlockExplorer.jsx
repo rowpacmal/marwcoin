@@ -1,8 +1,13 @@
+import { BlockView } from '../components/explorer/BlockView';
+import { BlockchainView } from '../components/explorer/BlockchainView';
+
 export const BlockExplorer = () => {
 	return (
-		<div>
-			<h1>Block Explorer</h1>
-			<p>This is the listBlocks page.</p>
+		<div className="max-w-7xl mx-auto">
+			<div className="relative flex flex-col gap-10 justify-center items-start mb-10 md:px-5 px-8">
+				<BlockView />
+				<BlockchainView />
+			</div>
 		</div>
 	);
 };
