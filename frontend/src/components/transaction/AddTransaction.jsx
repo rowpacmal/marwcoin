@@ -70,7 +70,7 @@ export const AddTransaction = () => {
                     type={"number"}
                     id="payload"
                     name="payload"
-                    placeholder="Amount"
+                    placeholder="Amount in MarwCoin"
                     onInput={(e) =>
                         setFormData((prevData) => ({
                             ...prevData,
