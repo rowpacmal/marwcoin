@@ -1,8 +1,8 @@
 import express from 'express';
 import {
-	getPendingTransactions,
-	mineBlock,
-	validateChain,
+  getPendingTransactions,
+  mineBlock,
+  validateChain,
 } from '../controllers/blockchainController.mjs';
 
 const blockchainRouter = express.Router();
