@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from './pages/Layout';
 import { Home } from './pages/Home';
-import { ListBlocks } from './pages/ListBlocks';
+import { BlockExplorer } from './pages/BlockExplorer';
 import { Transaction } from './pages/Transaction';
 import { NotFound } from './pages/NotFound';
 import { About } from './pages/About';
@@ -13,28 +13,28 @@ import { Contact } from './pages/Contact';
 // https://reactrouter.com/en/main/start/tutorial
 
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, element: <Home /> },
-      {
-        path: '/transaction',
-        element: <Transaction />,
-      },
-      {
-        path: '/blocks',
-        element: <ListBlocks />,
-      },
-      {
-        path: '/about',
-        element: <About />,
-      },
-      {
-        path: '/contact',
-        element: <Contact />,
-      },
-    ],
-  },
+	{
+		path: '/',
+		element: <Layout />,
+		errorElement: <NotFound />,
+		children: [
+			{ index: true, element: <Home /> },
+			{
+				path: '/transaction',
+				element: <Transaction />,
+			},
+			{
+				path: '/blocks',
+				element: <BlockExplorer />,
+			},
+			{
+				path: '/about',
+				element: <About />,
+			},
+			{
+				path: '/contact',
+				element: <Contact />,
+			},
+		],
+	},
 ]);
