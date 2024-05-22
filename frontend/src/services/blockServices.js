@@ -15,28 +15,11 @@ export const getAllBlocks = async () => {
   }
 };
 
-export const getBlock = async () => {
-  const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks`;
-
-  try {
-    const res = await fetch(URL);
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Failed to fetch block');
-    }
-
-    return data.payload;
-  } catch (error) {
-    throw new Error(error.message || 'Failed to fetch block');
-  }
-};
-
 export const getBlockByHash = async (hash) => {
   if (!hash) {
     throw new Error('Block hash is required');
   }
-  const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks/${hash}`;
+  const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks/hash/${hash}`;
 
   try {
     const res = await fetch(URL);
