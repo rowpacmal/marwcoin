@@ -18,9 +18,21 @@ export const getAllBlocks = (req, res, next) => {
 };
 
 export const getLatestBlock = (req, res, next) => {
-	res
-		.status(200)
-		.json(new ResponseData('Block found', 200, blockchain.getLatestBlock));
+	const { numberOfBlock } = req.query;
+	let block;
+
+	if (numberOfBlock) {
+		block = [];
+		for (let i = 0; i < numberOfBlock; i++) {
+			const index = blockchain.chain.length - i;
+			const lastBlock = blockchain.chain[index];
+			lastBlock && block.push(lastBlock);
+		}
+	} else {
+		block = blockchain.getLatestBlock;
+	}
+
+	res.status(200).json(new ResponseData('Block found', 200, block));
 };
 
 export const getBlockByIndex = (req, res, next) => {
