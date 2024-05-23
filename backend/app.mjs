@@ -1,24 +1,12 @@
+import './startup.mjs';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-
 import blockchainRouter from './routers/blockchainRoutes.mjs';
 import transactionRouter from './routers/transactionRoutes.mjs';
 import blockRouter from './routers/blockRoutes.mjs';
-
 import resourceNotFound from './utils/resourceNotFound.mjs';
 import errorHandler from './middlewares/errorHandler.mjs';
-
-import { fileURLToPath } from 'url';
-import path from 'path';
-import Blockchain from './classes/Blockchain.mjs';
-
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
-
-global.__appdir = dirname;
-
-export const blockchain = new Blockchain();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
