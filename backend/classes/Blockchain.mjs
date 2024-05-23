@@ -28,7 +28,8 @@ class Blockchain {
 
 		const block = Block.mineBlock(
 			this.getLatestBlock,
-			this.pendingTransactions
+			this.pendingTransactions,
+			{ address: minerAddress, reward: this.miningReward }
 		);
 
 		this.chain.push(block);

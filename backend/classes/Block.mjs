@@ -9,7 +9,8 @@ const Block = class {
 		hash,
 		transactions,
 		nonce,
-		difficulty
+		difficulty,
+		miner
 	) {
 		this.index = index;
 		this.timestamp = timestamp;
@@ -18,6 +19,15 @@ const Block = class {
 		this.transactions = transactions;
 		this.nonce = nonce;
 		this.difficulty = difficulty;
+
+		this.status = true;
+		this.miner = {
+			address: miner.address,
+			reward: miner.reward,
+		};
+		this.size = JSON.stringify(transactions).length;
+		this.gasUsed = (Math.random() * 1000000).toFixed(3);
+		this.gasPrice = '0.0000000194';
 	}
 
 	static get getGenesis() {
@@ -29,6 +39,7 @@ const Block = class {
 			transactions,
 			nonce,
 			difficulty,
+			miner,
 		} = genesisBlock;
 
 		return new this(
@@ -38,11 +49,12 @@ const Block = class {
 			hash,
 			transactions,
 			nonce,
-			difficulty
+			difficulty,
+			miner
 		);
 	}
 
-	static mineBlock(prevBlock, transactions) {
+	static mineBlock(prevBlock, transactions, miner) {
 		const index = +prevBlock.index + 1;
 		const prevHash = prevBlock.hash;
 
@@ -70,7 +82,8 @@ const Block = class {
 			hash,
 			transactions,
 			nonce,
-			difficulty
+			difficulty,
+			miner
 		);
 	}
 
