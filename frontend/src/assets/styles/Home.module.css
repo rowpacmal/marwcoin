@@ -19,24 +19,29 @@
 
 .title {
   color: #10316b;
-  font-size: 6rem;
-  font-family: 'Inter', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: sans-serif;
   padding: 1rem 3rem;
   text-transform: uppercase;
 }
 
 .description {
-  background-color: #10316b;
+  /* background-color: #10316b; */
+  background: linear-gradient(90deg, #033b9c, #10316b);
   color: white;
   padding: 1rem 3rem;
   font-size: 2.4rem;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .breadText {
   padding: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.8vw;
   font-family: 'Inter';
   font-weight: 500;
 }
@@ -44,9 +49,5 @@
 @media screen and (min-width: 1280px) {
   .homeImage {
     border-radius: 2rem 2rem 0 0;
-  }
-
-  .description {
-    border-radius: 0 2rem 2rem 0;
   }
 }
