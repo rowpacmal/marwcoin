@@ -49,7 +49,9 @@ export const TransactionTable = ({ transactions }) => {
                                     <TableCell value={tx.hash} />
                                     <TableCell value={tx.sender} />
                                     <TableCell value={tx.receiver} />
-                                    <TableCell value={tx.payload} />
+                                    <TableCell
+                                        value={`${tx.payload.amount} ${tx.payload.ticker}`}
+                                    />
                                 </tr>
                             ))}
                         </tbody>
