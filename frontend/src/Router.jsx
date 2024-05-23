@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
 				element: <Transaction />,
 			},
 			{
-				path: '/blocks',
+				path: '/explore',
 				element: <BlockExplorer />,
 			},
 			{

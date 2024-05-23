@@ -64,10 +64,10 @@ export const Header = () => {
 
 						<li className={styles.li}>
 							<NavLink
-								to="/blocks"
+								to="/explore"
 								className={({ isActive }) => onActive(isActive)}
 							>
-								Blocks
+								Explore
 							</NavLink>
 						</li>
 
