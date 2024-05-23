@@ -1,5 +1,6 @@
 import Block from './Block.mjs';
 import Transaction from './Transaction.mjs';
+import Currency from './Currency.mjs';
 
 class Blockchain {
 	constructor() {
@@ -20,7 +21,7 @@ class Blockchain {
 		const rewardTransaction = new Transaction(
 			null,
 			minerAddress,
-			this.miningReward
+			new Currency(this.miningReward)
 		);
 
 		this.pendingTransactions.push(rewardTransaction);
