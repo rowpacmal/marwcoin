@@ -35,9 +35,7 @@ export const BlockTransactions = ({ block }) => {
 			) : (
 				<Poster
 					src={fileSearchingSvg}
-					message={
-						'Eager to uncover the digital trails? Start by searching for transactions...'
-					}
+					message={`Looks like there's nothing to see here yet...`}
 				/>
 			)}
 		</>
