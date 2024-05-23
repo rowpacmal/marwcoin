@@ -1,5 +1,6 @@
-import { Overview } from './Overview';
+import { BlockInfo } from './BlockInfo';
 import viewBlockSvg from '../../assets/view_block_illustration.svg';
+import { Poster } from '../Poster';
 
 export const BlockView = () => {
 	const block = true;
@@ -9,19 +10,14 @@ export const BlockView = () => {
 			<h2 className="text-2xl font-bold">View Block</h2>
 
 			{block ? (
-				<Overview />
+				<BlockInfo block={block} />
 			) : (
-				<div className="flex flex-col items-center">
-					<img
-						src={viewBlockSvg}
-						className="w-80 mb-6"
-						alt="Illustration of transaction search"
-					/>
-					<p className="text-md font-normal text-center">
-						Eager to uncover the digital trails? Start by searching for
-						transactions
-					</p>
-				</div>
+				<Poster
+					src={viewBlockSvg}
+					message={
+						'Want to see the inner workings of a Marw block? Start by searching for blocks...'
+					}
+				/>
 			)}
 		</div>
 	);

@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import { SearchTransaction } from '../transaction/SearchTransaction';
-import { TransactionTable } from '../transaction/TransactionTable';
+import { BlockSearch } from './BlockSearch';
+import { BlockTable } from './BlockTable';
+import { LatestBlockButton } from './LatestBlockButton';
 
 export const BlockchainView = () => {
-	const [transactions, setTransactions] = useState([]);
+	const [blocks, setBlocks] = useState([]);
 
 	return (
 		<div className="w-full md:w-2/3 py-8 px-10 bg-white border border-gray-200 rounded-3xl shadow flex flex-col gap-5 mx-auto">
-			<SearchTransaction setTransactions={setTransactions} />
-			<TransactionTable transactions={transactions} />
+			<div className="flex gap-3 items-start md:flex-row flex-col">
+				<h2 className="text-2xl font-bold">Blockchain</h2>
+				<LatestBlockButton setBlocks={setBlocks} />
+			</div>
+			<BlockSearch setBlocks={setBlocks} />
+			<BlockTable blocks={blocks} />
 		</div>
 	);
 };
