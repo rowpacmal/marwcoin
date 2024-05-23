@@ -4,7 +4,6 @@ import styles from '../assets/styles/About.module.css';
 export const About = () => {
   return (
     <div className={styles.aboutContainer}>
-      
       <div className={styles.textContainer}>
         <h1 className={styles.title}>About</h1>
         <p className={styles.description}>
@@ -24,6 +23,7 @@ export const About = () => {
         height='1208'
         className={styles.aboutImage}
       />
+      <h1 className={styles.titleSmallScreen}>About</h1>
     </div>
   );
 };
