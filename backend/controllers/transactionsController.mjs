@@ -1,4 +1,4 @@
-import { blockchain } from '../app.mjs';
+import { blockchain } from '../startup.mjs';
 import Transaction from '../classes/Transaction.mjs';
 import ResponseData from '../classes/ResponseData.mjs';
 import ErrorResponse from '../classes/ErrorResponse.mjs';

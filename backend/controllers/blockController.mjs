@@ -1,4 +1,4 @@
-import { blockchain } from '../app.mjs';
+import { blockchain } from '../startup.mjs';
 // import Block from '../classes/Block.mjs';
 import ErrorResponse from '../classes/ErrorResponse.mjs';
 import ResponseData from '../classes/ResponseData.mjs';
