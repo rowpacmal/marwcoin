@@ -37,25 +37,25 @@ export const BlockOverview = ({ block }) => {
 					<BlockProperty
 						icon={<IconBox />}
 						title={'Block Height'}
-						value={256}
+						value={block.index}
 					/>
 
 					<BlockProperty
 						icon={<IconProgressAlert />}
 						title={'Status'}
-						value={'finalized'}
+						value={block.status ? 'Finalized' : 'Unfinalized'}
 					/>
 
 					<BlockProperty
 						icon={<IconClock />}
 						title={'Timestamp'}
-						value={1237984876}
+						value={block.timestamp}
 					/>
 
 					<BlockProperty
 						icon={<IconCoins />}
 						title={'Transactions'}
-						value={128}
+						value={block.transactions.length}
 					/>
 				</div>
 
@@ -63,25 +63,25 @@ export const BlockOverview = ({ block }) => {
 					<BlockProperty
 						icon={<IconWallet />}
 						title={'Fee Recipient'}
-						value={'0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5'}
+						value={block.miner?.address}
 					/>
 
 					<BlockProperty
 						icon={<IconReceipt />}
 						title={'Block Reward'}
-						value={'0.0742835575 MRW'}
+						value={block.miner?.reward + ' MRW'}
 					/>
 
 					<BlockProperty
 						icon={<IconGauge />}
 						title={'Total Difficulty'}
-						value={'58750003716598352816469'}
+						value={block.nonce}
 					/>
 
 					<BlockProperty
 						icon={<IconDatabase />}
 						title={'Size'}
-						value={'33598 bytes'}
+						value={block.size + ' bytes'}
 					/>
 				</div>
 
@@ -89,13 +89,13 @@ export const BlockOverview = ({ block }) => {
 					<BlockProperty
 						icon={<IconFlame />}
 						title={'Gas Used'}
-						value={'7824518 (26.08%)'}
+						value={`${block.gasUsed} (${(block.gasUsed / 10000).toFixed(2)}%)`}
 					/>
 
 					<BlockProperty
 						icon={<IconGasStation />}
 						title={'Base Fee Per Gas'}
-						value={'0.0000000194 MRW'}
+						value={block.gasPrice + ' MRW'}
 					/>
 				</div>
 
@@ -103,17 +103,13 @@ export const BlockOverview = ({ block }) => {
 					<BlockProperty
 						icon={<IconHash />}
 						title={'Current Hash'}
-						value={
-							'0x8a2ac2d3da2f1a9b4fc6866f2af57cb24671e9480602c70df8f4a9564fcca42c'
-						}
+						value={block.hash}
 					/>
 
 					<BlockProperty
 						icon={<IconHash />}
 						title={'Previous Hash'}
-						value={
-							'0x158e4ee238d509155a4e8b8c47df943995d1c7a48d3d475638d79811f9985a64'
-						}
+						value={block.prevHash}
 					/>
 				</div>
 			</div>

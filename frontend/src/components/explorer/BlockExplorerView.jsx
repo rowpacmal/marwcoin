@@ -3,7 +3,7 @@ import { BlockSearch } from './BlockSearch';
 import { BlockTable } from './BlockTable';
 import { LatestBlockButton } from './LatestBlockButton';
 
-export const BlockExplorerView = () => {
+export const BlockExplorerView = ({ setBlock }) => {
 	const [blocks, setBlocks] = useState([]);
 
 	return (
@@ -13,7 +13,7 @@ export const BlockExplorerView = () => {
 				<LatestBlockButton setBlocks={setBlocks} />
 			</div>
 			<BlockSearch setBlocks={setBlocks} />
-			<BlockTable blocks={blocks} />
+			<BlockTable blocks={blocks} setBlock={setBlock} />
 		</div>
 	);
 };

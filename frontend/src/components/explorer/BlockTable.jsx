@@ -2,8 +2,9 @@ import searchBlockSvg from '../../assets/search_block_illustration.svg';
 import { TableHeader } from '../table/TableHeader';
 import { TableCell } from '../table/TableCell';
 import { Poster } from '../Poster';
+import { IconEye } from '@tabler/icons-react';
 
-export const BlockTable = ({ blocks }) => {
+export const BlockTable = ({ blocks, setBlock }) => {
 	return (
 		<>
 			{blocks.length ? (
@@ -26,9 +27,12 @@ export const BlockTable = ({ blocks }) => {
 									<TableCell value={block.hash} />
 									<TableCell value={block.transactions.length} />
 
-									<td className="text-right px-6 max-w-4">
-										<button className="text-white bg-blue-700 border-0 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-6 py-2 text-center">
-											View
+									<td className="text-right px-6 w-6">
+										<button
+											className="text-white bg-blue-700 border-0 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center"
+											onClick={() => setBlock(block)}
+										>
+											<IconEye />
 										</button>
 									</td>
 								</tr>
