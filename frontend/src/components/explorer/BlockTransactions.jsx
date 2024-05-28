@@ -1,4 +1,4 @@
-import fileSearchingSvg from '../../assets/file_searching_illustration.svg';
+import fileSearchingSvg from '../../assets/illustrations/file_searching_illustration.svg';
 import { Poster } from '../Poster';
 import { TableCell } from '../table/TableCell';
 import { TableHeader } from '../table/TableHeader';

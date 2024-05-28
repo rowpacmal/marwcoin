@@ -1,4 +1,4 @@
-import searchBlockSvg from '../../assets/search_block_illustration.svg';
+import searchBlockSvg from '../../assets/illustrations/search_block_illustration.svg';
 import { TableHeader } from '../table/TableHeader';
 import { TableCell } from '../table/TableCell';
 import { Poster } from '../Poster';

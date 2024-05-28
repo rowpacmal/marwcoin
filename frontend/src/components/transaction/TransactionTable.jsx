@@ -1,4 +1,4 @@
-import transactionSvg from '../../assets/transaction_illustration.svg';
+import transactionSvg from '../../assets/illustrations/transaction_illustration.svg';
 import { TableHeader } from '../table/TableHeader';
 import { TableCell } from '../table/TableCell';
 import { Poster } from '../Poster';
