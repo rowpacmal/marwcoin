@@ -4,6 +4,7 @@ import styles from '../assets/styles/Home.module.css';
 export const Home = () => {
   return (
     <div className={styles.homeContainer}>
+      <h1 className={styles.titleSmallScreen}>MARW</h1>
       <img
         src='./src/assets/home-page.jpg'
         alt='Graffiti on a wall'
@@ -12,7 +13,7 @@ export const Home = () => {
         className={styles.homeImage}
       />
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Title</h1>
+        <h1 className={styles.title}>MARW</h1>
         <p className={styles.description}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum,
           excepturi?
