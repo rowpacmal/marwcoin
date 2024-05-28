@@ -3,7 +3,7 @@ export const Poster = ({ src, message }) => {
 		<div className="flex flex-col items-center">
 			<img
 				src={src}
-				className="my-10 max-w-96"
+				className="my-10 max-w-96 w-full"
 				alt="Illustration of transaction search"
 			/>
 			<p className="text-md font-normal text-center">{message}</p>
