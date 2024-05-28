@@ -8,7 +8,7 @@ export const TransactionTable = ({ transactions }) => {
 		<>
 			{transactions.length ? (
 				<div className="relative overflow-x-auto max-h-96">
-					<table className="md:w-full w-max text-sm text-left rtl:text-right text-gray-500">
+					<table className="w-full text-sm text-left rtl:text-right text-gray-500">
 						<thead className="text-xs text-gray-800 uppercase bg-sky-50">
 							<tr>
 								<TableHeader title="Transaction Hash" />
