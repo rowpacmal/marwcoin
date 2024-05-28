@@ -84,7 +84,11 @@ export const createTransaction = (req, res, next) => {
 				);
 		}
 
-		const transaction = new Transaction(sender, receiver, new Currency(payload));
+		const transaction = new Transaction(
+			sender,
+			receiver,
+			new Currency(+payload)
+		);
 		blockchain?.addTransaction(transaction);
 
 		res

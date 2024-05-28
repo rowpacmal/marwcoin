@@ -1,12 +1,12 @@
-import transactionSvg from '../../assets/transaction_illustration.svg';
-import { TableHeader } from '../table/TableHeader';
-import { TableCell } from '../table/TableCell';
+import fileSearchingSvg from '../../assets/file_searching_illustration.svg';
 import { Poster } from '../Poster';
+import { TableCell } from '../table/TableCell';
+import { TableHeader } from '../table/TableHeader';
 
-export const TransactionTable = ({ transactions }) => {
+export const BlockTransactions = ({ block }) => {
 	return (
 		<>
-			{transactions.length ? (
+			{block.transactions.length ? (
 				<div className="relative overflow-x-auto max-h-96">
 					<table className="md:w-full w-max text-sm text-left rtl:text-right text-gray-500">
 						<thead className="text-xs text-gray-800 uppercase bg-sky-50">
@@ -19,7 +19,7 @@ export const TransactionTable = ({ transactions }) => {
 						</thead>
 
 						<tbody>
-							{transactions?.map((tx) => (
+							{block.transactions?.map((tx) => (
 								<tr key={tx.hash} className="bg-white border-b">
 									<TableCell value={tx.hash} />
 									<TableCell value={tx.sender} />
@@ -34,10 +34,8 @@ export const TransactionTable = ({ transactions }) => {
 				</div>
 			) : (
 				<Poster
-					src={transactionSvg}
-					message={
-						'Eager to uncover the digital trails? Start by searching for transactions...'
-					}
+					src={fileSearchingSvg}
+					message={`Looks like there's nothing to see here yet...`}
 				/>
 			)}
 		</>
