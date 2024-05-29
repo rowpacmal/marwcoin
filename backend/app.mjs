@@ -1,11 +1,11 @@
-import express from 'express';
-import helmet from 'helmet';
-import cors from 'cors';
-import blockchainRouter from './routers/blockchainRoutes.mjs';
-import transactionRouter from './routers/transactionRoutes.mjs';
-import blockRouter from './routers/blockRoutes.mjs';
-import resourceNotFound from './utils/resourceNotFound.mjs';
-import errorHandler from './middlewares/errorHandler.mjs';
+import express from "express";
+import helmet from "helmet";
+import cors from "cors";
+import blockchainRouter from "./routers/blockchainRoutes.mjs";
+import transactionRouter from "./routers/transactionRoutes.mjs";
+import blockRouter from "./routers/blockRoutes.mjs";
+import resourceNotFound from "./utils/resourceNotFound.mjs";
+import errorHandler from "./middlewares/errorHandler.mjs";
 import "./shutdown.mjs";
 
 const app = express();
@@ -16,16 +16,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
-app.use('/api/v1/blockchain', blockchainRouter);
-app.use('/api/v1/transactions', transactionRouter);
-app.use('/api/v1/blocks', blockRouter);
+app.use("/api/v1/blockchain", blockchainRouter);
+app.use("/api/v1/transactions", transactionRouter);
+app.use("/api/v1/blocks", blockRouter);
 
-app.all('*', resourceNotFound);
+app.all("*", resourceNotFound);
 
 app.use(errorHandler);
 
 app.listen(PORT, (err) => {
-	err
-		? console.error('Failed to run server..')
-		: console.log(`Server running at port ${PORT}..`);
+    err
+        ? console.error("Failed to run server..")
+        : console.log(`Server running at port ${PORT}..`);
 });

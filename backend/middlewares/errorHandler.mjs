@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 export default function errorHandler(err, req, res, _) {
     const LOGS_PATH = "../logs";
@@ -18,11 +18,14 @@ export default function errorHandler(err, req, res, _) {
         [
             `Method: ${req.method}`,
             `Url: ${req.originalUrl}`,
-            `Date: ${new Date().toLocaleDateString('sv-SE')}`,
-            `Time: ${new Date().toLocaleTimeString('sv-SE')}`,
-            `Message: ${err.message}`,
-        ].join(' - ') + '\n';
+            `Date: ${new Date().toLocaleDateString("sv-SE")}`,
+            `Time: ${new Date().toLocaleTimeString("sv-SE")}`,
+            `Message: ${err.message}`
+        ].join(" - ") + "\n";
 
     fs.appendFileSync(logFilePath, logMessage);
-    res.status(err.statusCode).json({message: err.message, statusCode: err.statusCode});
+    res.status(err.statusCode).json({
+        message: err.message,
+        statusCode: err.statusCode
+    });
 }

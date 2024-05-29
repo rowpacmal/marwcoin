@@ -1,16 +1,20 @@
 import fs from "fs";
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import Blockchain from './classes/Blockchain.mjs';
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import Blockchain from "./classes/Blockchain.mjs";
 
 // Configuration constants
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirPath = dirname(currentFilePath);
 
-const DATA_DIRECTORY = 'data';
-const BLOCKCHAIN_DATA_FILE = 'blockchain.json';
+const DATA_DIRECTORY = "data";
+const BLOCKCHAIN_DATA_FILE = "blockchain.json";
 
-const blockchainDataFilePath = join(currentDirPath, DATA_DIRECTORY, BLOCKCHAIN_DATA_FILE);
+const blockchainDataFilePath = join(
+    currentDirPath,
+    DATA_DIRECTORY,
+    BLOCKCHAIN_DATA_FILE
+);
 const dataDirectoryPath = join(currentDirPath, DATA_DIRECTORY);
 
 // Function to load the blockchain from the JSON file
@@ -18,7 +22,7 @@ export const loadBlockchain = () => {
     const blockchain = new Blockchain();
 
     if (fs.existsSync(blockchainDataFilePath)) {
-        const data = fs.readFileSync(blockchainDataFilePath, 'utf8');
+        const data = fs.readFileSync(blockchainDataFilePath, "utf8");
         Object.assign(blockchain, JSON.parse(data));
     }
 
@@ -31,5 +35,8 @@ export const saveBlockchain = (blockchain) => {
         fs.mkdirSync(dataDirectoryPath);
     }
 
-    fs.writeFileSync(blockchainDataFilePath, JSON.stringify(blockchain, null, 2));
+    fs.writeFileSync(
+        blockchainDataFilePath,
+        JSON.stringify(blockchain, null, 2)
+    );
 };

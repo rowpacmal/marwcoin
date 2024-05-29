@@ -1,11 +1,11 @@
 export default class Currency {
-  constructor(amount) {
-    this.name = "MarwCoin";
-    this.ticker = "MRW";
-    this.amount = amount;
-  }
+    constructor(amount) {
+        this.name = "MarwCoin";
+        this.ticker = "MRW";
+        this.amount = amount;
+    }
 
-  get getAmount() {
-    return this.amount;
-  }
+    get getAmount() {
+        return this.amount;
+    }
 }
