@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../assets/styles/Home.module.css';
 
 export const Home = () => {
