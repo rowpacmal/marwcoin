@@ -1,4 +1,4 @@
-import { useLatestState } from '../hooks/useLatestState';
+import { useLatestState } from '../../hooks/useLatestState';
 
 export const LatestButton = ({ setState, serviceType, buttonName }) => {
 	const { mutate } = useLatestState(setState, serviceType);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TransactionTable } from './TransactionTable';
-import { LatestButton } from '../LatestButton';
+import { LatestButton } from '../buttons/LatestButton';
 import { Search } from '../Search';
 import { IconCoins } from '@tabler/icons-react';
 
@@ -23,7 +23,7 @@ export const TransactionView = () => {
 				icon={<IconCoins />}
 				placeholder="Search by transaction hash or block index..."
 			/>
-			<TransactionTable transactions={transactions} />
+			<TransactionTable transactions={transactions} search />
 		</div>
 	);
 };

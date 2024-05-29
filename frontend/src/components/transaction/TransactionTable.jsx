@@ -1,9 +1,10 @@
 import transactionSvg from '../../assets/illustrations/transaction_illustration.svg';
+import fileSearchingSvg from '../../assets/illustrations/file_searching_illustration.svg';
 import { TableHeader } from '../table/TableHeader';
 import { TableCell } from '../table/TableCell';
 import { Poster } from '../Poster';
 
-export const TransactionTable = ({ transactions }) => {
+export const TransactionTable = ({ transactions, search }) => {
 	return (
 		<>
 			{transactions.length ? (
@@ -32,12 +33,17 @@ export const TransactionTable = ({ transactions }) => {
 						</tbody>
 					</table>
 				</div>
-			) : (
+			) : search ? (
 				<Poster
 					src={transactionSvg}
 					message={
 						'Eager to uncover the digital trails? Start by searching for transactions...'
 					}
+				/>
+			) : (
+				<Poster
+					src={fileSearchingSvg}
+					message={`Looks like there's nothing to see here yet...`}
 				/>
 			)}
 		</>
