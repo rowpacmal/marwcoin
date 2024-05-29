@@ -1,24 +1,28 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-export default function errorHandler(err, req, res, next) {
-	const logFilePath = path.join(__appdir, 'logs', 'error.log');
-	const statusCode = err.statusCode || 500;
-	const success = err.success || false;
+export default function errorHandler(err, req, res, _) {
+    const LOGS_PATH = "../logs";
+    const LOG_FILE = "error.log";
 
-	const logMessage =
-		[
-			`Method: ${req.method}`,
-			`Url: ${req.originalUrl}`,
-			`Date: ${new Date().toLocaleDateString('sv-SE')}`,
-			`Time: ${new Date().toLocaleTimeString('sv-SE')}`,
-			`Success: ${success}`,
-			`Message: ${err.message}`,
-		].join(' - ') + '\n';
+    const dirname = path.dirname(fileURLToPath(import.meta.url));
+    const logDirPath = path.join(dirname, LOGS_PATH);
+    const logFilePath = path.join(logDirPath, LOG_FILE);
 
-	fs.appendFileSync(logFilePath, logMessage);
+    if (!fs.existsSync(logDirPath)) {
+        fs.mkdirSync(logDirPath, { recursive: true });
+    }
 
-	if (!res.headersSent) {
-		res.status(statusCode).json({ success: success, message: err.message });
-	}
+    const logMessage =
+        [
+            `Method: ${req.method}`,
+            `Url: ${req.originalUrl}`,
+            `Date: ${new Date().toLocaleDateString('sv-SE')}`,
+            `Time: ${new Date().toLocaleTimeString('sv-SE')}`,
+            `Message: ${err.message}`,
+        ].join(' - ') + '\n';
+
+    fs.appendFileSync(logFilePath, logMessage);
+    res.status(err.statusCode).json({message: err.message, statusCode: err.statusCode});
 }
