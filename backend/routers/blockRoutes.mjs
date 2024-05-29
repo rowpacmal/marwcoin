@@ -9,9 +9,11 @@ import {
 const blockRouter = express.Router();
 
 blockRouter.route('/').get(getAllBlocks);
+
 blockRouter.route('/latest').get(getLatestBlock);
-blockRouter.route('/:blockIndex').get(getBlockByIndex);
 
 blockRouter.route('/hash/:blockHash').get(getBlockByHash);
+
+blockRouter.route('/:blockIndex').get(getBlockByIndex);
 
 export default blockRouter;
