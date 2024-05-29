@@ -1,6 +1,6 @@
 import { useSearchBlock } from '../../hooks/useSearchBlock';
-import { SearchForm } from '../transaction/SearchForm';
-import { Notice } from '../transaction/Notice';
+import { SearchForm } from '../SearchForm';
+import { Notice } from '../Notice';
 import { IconBox } from '@tabler/icons-react';
 
 export const BlockSearch = ({ setBlocks }) => {

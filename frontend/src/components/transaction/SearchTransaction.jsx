@@ -1,6 +1,6 @@
-import { Notice } from './Notice';
+import { Notice } from '../Notice';
 import { useSearchTxns } from '../../hooks/useSearchTxns';
-import { SearchForm } from './SearchForm';
+import { SearchForm } from '../SearchForm';
 import { IconCoins } from '@tabler/icons-react';
 
 export const SearchTransaction = ({ setTransactions }) => {
