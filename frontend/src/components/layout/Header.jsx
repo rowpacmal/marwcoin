@@ -30,7 +30,7 @@ export const Header = () => {
 			<div className={styles.wrapper}>
 				<Link to="/" className={styles.logo + onScroll(styles.hide)}>
 					<img
-						src="./src/assets/Logo3.png"
+						src="./src/assets/marw-logo.png"
 						alt="Marw Logo"
 						width="2408"
 						height="1208"
