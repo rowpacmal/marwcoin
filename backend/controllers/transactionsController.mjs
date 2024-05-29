@@ -4,97 +4,75 @@ import ResponseData from '../classes/ResponseData.mjs';
 import ErrorResponse from '../classes/ErrorResponse.mjs';
 import Currency from '../classes/Currency.mjs';
 
+const sendResponse = (res, message, status, data = null) => {
+    res.status(status).json(new ResponseData(message, status, data));
+};
+
+const handleInternalError = (next, message = 'Internal Server Error') => {
+    next(new ErrorResponse(message, 500));
+};
+
 export const getTransactionByHash = (req, res, next) => {
-	try {
-		const { txHash } = req.params;
+    try {
+        const { txHash } = req.params;
+        const transaction = blockchain?.chain
+            ?.flatMap(block => block.transactions)
+            ?.find(transaction => transaction.hash === txHash) ?? null;
 
-		const transaction =
-			blockchain?.chain
-				?.flatMap((block) => block.transactions)
-				?.find((transaction) => transaction.hash === txHash) ?? null;
+        if (!transaction) {
+            return sendResponse(res, 'No transaction was found', 404);
+        }
 
-		if (!transaction) {
-			return res
-				.status(404)
-				.json(new ResponseData('No transaction was found', 404));
-		}
-
-		res
-			.status(200)
-			.json(new ResponseData('Transaction found', 200, transaction));
-	} catch (err) {
-		next(new ErrorResponse('Internal Server Error', 500));
-	}
+        sendResponse(res, 'Transaction found', 200, transaction);
+    } catch (err) {
+        handleInternalError(next);
+    }
 };
 
 export const getLatestTransaction = (_, res, next) => {
-	try {
-		const lastBlock = blockchain?.chain?.at(-1);
-		const transaction = lastBlock?.transactions?.at(-1) ?? null;
+    try {
+        const lastBlock = blockchain?.chain?.at(-1);
+        const transaction = lastBlock?.transactions?.at(-1) ?? null;
 
-		if (!transaction) {
-			return res
-				.status(404)
-				.json(new ResponseData('No transaction was found', 404));
-		}
+        if (!transaction) {
+            return sendResponse(res, 'No transaction was found', 404);
+        }
 
-		res
-			.status(200)
-			.json(new ResponseData('Transaction found', 200, transaction));
-	} catch (err) {
-		next(new ErrorResponse('Internal Server Error', 500));
-	}
+        sendResponse(res, 'Transaction found', 200, transaction);
+    } catch (err) {
+        handleInternalError(next);
+    }
 };
 
 export const getTransactionsInBlock = (req, res, next) => {
-	try {
-		const { blockIndex } = req.query;
+    try {
+        const { blockIndex } = req.query;
+        const block = blockchain?.chain?.find(block => +block.index === +blockIndex);
+        const transactions = block?.transactions ?? null;
 
-		const block = blockchain?.chain?.find(
-			(block) => +block.index === +blockIndex
-		);
-		const transactions = block?.transactions ?? null;
+        if (!transactions) {
+            return sendResponse(res, 'No transactions were found', 404);
+        }
 
-		if (!transactions) {
-			return res
-				.status(404)
-				.json(new ResponseData('No transactions were found', 404));
-		}
-
-		res
-			.status(200)
-			.json(new ResponseData('Transactions found', 200, transactions));
-	} catch (err) {
-		next(new ErrorResponse(err.message, 500));
-	}
+        sendResponse(res, 'Transactions found', 200, transactions);
+    } catch (err) {
+        handleInternalError(next, err.message);
+    }
 };
 
 export const createTransaction = (req, res, next) => {
-	try {
-		const { sender, receiver, payload } = req.body;
+    try {
+        const { sender, receiver, payload } = req.body;
 
-		if (!sender || !receiver || !payload) {
-			return res
-				.status(400)
-				.json(
-					new ResponseData(
-						'Missing or invalid fields. Expected `sender`, `receiver`, and `payload`',
-						400
-					)
-				);
-		}
+        if (!sender || !receiver || !payload) {
+            return sendResponse(res, 'Missing or invalid fields. Expected `sender`, `receiver`, and `payload`', 400);
+        }
 
-		const transaction = new Transaction(
-			sender,
-			receiver,
-			new Currency(+payload)
-		);
-		blockchain?.addTransaction(transaction);
+        const transaction = new Transaction(sender, receiver, new Currency(+payload));
+        blockchain?.addTransaction(transaction);
 
-		res
-			.status(201)
-			.json(new ResponseData('Transaction created', 201, transaction));
-	} catch (err) {
-		next(new ErrorResponse('Internal Server Error', 500));
-	}
+        sendResponse(res, 'Transaction created', 201, transaction);
+    } catch (err) {
+        handleInternalError(next);
+    }
 };
