@@ -4,6 +4,7 @@ export const Home = () => {
 	return (
 		<div className={styles.homeContainer}>
 			<h1 className={styles.titleSmallScreen}>MARW</h1>
+
 			<img
 				src="./src/assets/home-page.webp"
 				alt="Graffiti on a wall"
@@ -11,12 +12,15 @@ export const Home = () => {
 				height="1208"
 				className={styles.homeImage}
 			/>
+
 			<div className={styles.textContainer}>
 				<h1 className={styles.title}>MARW</h1>
+
 				<p className={styles.description}>
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum,
 					excepturi?
 				</p>
+
 				<p className={styles.breadText}>
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere,
 					laboriosam a. Ipsum, consectetur esse voluptates exercitationem fugit

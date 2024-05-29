@@ -6,6 +6,7 @@ export const Poster = ({ src, message }) => {
 				className="my-10 max-w-96 w-full"
 				alt="Illustration of transaction search"
 			/>
+
 			<p className="text-md font-normal text-center">{message}</p>
 		</div>
 	);
