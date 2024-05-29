@@ -1,7 +1,8 @@
 import HttpClient from '../utils/httpClient.mjs';
+import { API_BASE_URL } from '../utils/settings.mjs';
 
 export const getPendingTransactions = async () => {
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blockchain`;
+	const URL = `${API_BASE_URL}/api/v1/blockchain`;
 
 	try {
 		return await HttpClient.get(URL);
@@ -14,7 +15,7 @@ export const mineBlock = async ({ minerAddress }) => {
 	if (!minerAddress) {
 		throw new Error('Miner address is required');
 	}
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blockchain/mine`;
+	const URL = `${API_BASE_URL}/api/v1/blockchain/mine`;
 
 	try {
 		return await HttpClient.post(URL, { minerAddress });
@@ -24,7 +25,7 @@ export const mineBlock = async ({ minerAddress }) => {
 };
 
 export const validateChain = async () => {
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blockchain/validate`;
+	const URL = `${API_BASE_URL}/api/v1/blockchain/validate`;
 
 	try {
 		return await HttpClient.get(URL);

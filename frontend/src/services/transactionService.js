@@ -1,10 +1,11 @@
 import HttpClient from '../utils/httpClient.mjs';
+import { API_BASE_URL } from '../utils/settings.mjs';
 
 export const fetchByHash = async (hash) => {
 	if (!hash) {
 		throw new Error('Hash is required');
 	}
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/transactions/${hash}`;
+	const URL = `${API_BASE_URL}/api/v1/transactions/${hash}`;
 
 	try {
 		return await HttpClient.get(URL);
@@ -17,7 +18,7 @@ export const fetchByBlockIndex = async (blockIndex) => {
 	if (!blockIndex) {
 		throw new Error('Block index is required');
 	}
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/transactions?blockIndex=${blockIndex}`;
+	const URL = `${API_BASE_URL}/api/v1/transactions?blockIndex=${blockIndex}`;
 
 	try {
 		return await HttpClient.get(URL);
@@ -27,7 +28,7 @@ export const fetchByBlockIndex = async (blockIndex) => {
 };
 
 export const fetchLatest = async () => {
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/transactions/latest`;
+	const URL = `${API_BASE_URL}/api/v1/transactions/latest`;
 
 	try {
 		return await HttpClient.get(URL);
@@ -40,7 +41,7 @@ export const addTransaction = async ({ sender, receiver, payload }) => {
 	if (!sender || !receiver || !payload) {
 		throw new Error('All fields are required');
 	}
-	const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/transactions`;
+	const URL = `${API_BASE_URL}/api/v1/transactions`;
 
 	try {
 		return await HttpClient.post(URL, { sender, receiver, payload });
