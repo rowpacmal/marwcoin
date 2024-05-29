@@ -1,4 +1,4 @@
-import HttpClient from './httpClient.mjs';
+import HttpClient from '../utils/httpClient.mjs';
 
 export const getAllBlocks = async () => {
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks`;
