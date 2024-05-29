@@ -1,4 +1,3 @@
-import './startup.mjs';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -7,6 +6,7 @@ import transactionRouter from './routers/transactionRoutes.mjs';
 import blockRouter from './routers/blockRoutes.mjs';
 import resourceNotFound from './utils/resourceNotFound.mjs';
 import errorHandler from './middlewares/errorHandler.mjs';
+import "./shutdown.mjs";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
