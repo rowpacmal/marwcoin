@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { BlockSearch } from './BlockSearch';
 import { BlockTable } from './BlockTable';
 import { LatestButton } from '../LatestButton';
+import { Search } from '../Search';
+import { IconBox } from '@tabler/icons-react';
 
 export const BlockExplorerView = ({ setBlock }) => {
 	const [blocks, setBlocks] = useState([]);
@@ -16,7 +17,12 @@ export const BlockExplorerView = ({ setBlock }) => {
 					buttonName="Latest Blocks"
 				/>
 			</div>
-			<BlockSearch setBlocks={setBlocks} />
+			<Search
+				setState={setBlocks}
+				serviceType="blocks"
+				icon={<IconBox />}
+				placeholder="Search by block index or hash..."
+			/>
 			<BlockTable blocks={blocks} setBlock={setBlock} />
 		</div>
 	);

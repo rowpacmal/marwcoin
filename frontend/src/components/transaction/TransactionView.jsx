@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { SearchTransaction } from './SearchTransaction';
 import { TransactionTable } from './TransactionTable';
 import { LatestButton } from '../LatestButton';
+import { Search } from '../Search';
+import { IconCoins } from '@tabler/icons-react';
 
 export const TransactionView = () => {
 	const [transactions, setTransactions] = useState([]);
@@ -16,7 +17,12 @@ export const TransactionView = () => {
 					buttonName="Latest Txn"
 				/>
 			</div>
-			<SearchTransaction setTransactions={setTransactions} />
+			<Search
+				setState={setTransactions}
+				serviceType="transactions"
+				icon={<IconCoins />}
+				placeholder="Search by transaction hash or block index..."
+			/>
 			<TransactionTable transactions={transactions} />
 		</div>
 	);

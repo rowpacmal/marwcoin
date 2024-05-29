@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { getLastBlock } from '../services/blockServices';
 import { fetchLatest } from '../services/transactionService';
+import { getLastBlock } from '../services/blockServices';
 import { useEffect } from 'react';
 
 export const useLatestState = (setState, serviceType) => {
