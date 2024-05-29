@@ -1,15 +1,10 @@
+import HttpClient from './httpClient.mjs';
+
 export const getAllBlocks = async () => {
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks`;
 
   try {
-    const res = await fetch(URL);
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Failed to fetch blocks');
-    }
-
-    return data.payload;
+    return await HttpClient.get(URL);
   } catch (error) {
     throw new Error(error.message || 'Failed to fetch blocks');
   }
@@ -22,14 +17,7 @@ export const getBlockByHash = async (hash) => {
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks/hash/${hash}`;
 
   try {
-    const res = await fetch(URL);
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Failed to fetch block');
-    }
-
-    return data.payload;
+    return await HttpClient.get(URL);
   } catch (error) {
     throw new Error(error.message || 'Failed to fetch block');
   }
@@ -42,14 +30,7 @@ export const getBlockByIndex = async (blockIndex) => {
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks/${blockIndex}`;
 
   try {
-    const res = await fetch(URL);
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Failed to fetch block');
-    }
-
-    return data.payload;
+    return await HttpClient.get(URL);
   } catch (error) {
     throw new Error(error.message || 'Failed to fetch block');
   }
@@ -59,15 +40,8 @@ export const getLastBlock = async (topBlocks) => {
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/blocks/latest${topBlocks && '?numberOfBlock=' + topBlocks}`;
 
   try {
-    const res = await fetch(URL);
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Failed to fetch block');
-    }
-
-    return data.payload;
+    return await HttpClient.get(URL);
   } catch (error) {
-    throw new Error(error.message || 'Failed to fetch block');
+    throw new Error(error.message || 'Failed to fetch last block');
   }
 };
