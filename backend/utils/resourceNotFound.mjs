@@ -1,13 +1,11 @@
-import ErrorResponse from "../classes/ErrorResponse.mjs";
+import { handleErrorResponse } from "./responseHandlers.mjs";
 
 const resourceNotFound = (req, _, next) => {
     const { method, originalUrl } = req;
-
-    next(
-        new ErrorResponse(
-            `Cannot use ${method} at resource ${originalUrl}, endpoint Not Found.`,
-            404
-        )
+    return handleErrorResponse(
+        next,
+        `Cannot use ${method} at resource ${originalUrl}, endpoint does not exist`,
+        404
     );
 };
 
