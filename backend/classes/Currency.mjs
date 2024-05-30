@@ -1,4 +1,4 @@
-export default class Currency {
+class Currency {
     constructor(amount) {
         this.name = "MarwCoin";
         this.ticker = "MRW";
@@ -9,3 +9,5 @@ export default class Currency {
         return this.amount;
     }
 }
+
+export default Currency;

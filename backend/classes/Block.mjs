@@ -1,7 +1,7 @@
 import { createHash } from "../utils/cryptoLib.mjs";
 import genesisBlock from "../utils/genesisBlock.mjs";
 
-const Block = class {
+class Block {
     constructor(
         index,
         timestamp,
