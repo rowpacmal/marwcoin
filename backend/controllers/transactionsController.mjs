@@ -1,16 +1,10 @@
 import { blockchain } from "../startup.mjs";
 import Transaction from "../classes/Transaction.mjs";
-import ResponseData from "../classes/ResponseData.mjs";
-import ErrorResponse from "../classes/ErrorResponse.mjs";
 import Currency from "../classes/Currency.mjs";
-
-const sendResponse = (res, message, status, data = null) => {
-    res.status(status).json(new ResponseData(message, status, data));
-};
-
-const handleInternalError = (next, message = "Internal Server Error") => {
-    next(new ErrorResponse(message, 500));
-};
+import {
+    handleResponse,
+    handleErrorResponse
+} from "../utils/responseHandlers.mjs";
 
 export const getTransactionByHash = (req, res, next) => {
     try {
@@ -21,12 +15,12 @@ export const getTransactionByHash = (req, res, next) => {
                 ?.find((transaction) => transaction.hash === txHash) ?? null;
 
         if (!transaction) {
-            return sendResponse(res, "No transaction was found", 404);
+            return handleErrorResponse(next, "No transaction was found", 404);
         }
 
-        sendResponse(res, "Transaction found", 200, transaction);
-    } catch (err) {
-        handleInternalError(next);
+        handleResponse(res, "Transaction found", 200, transaction);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve transaction by hash");
     }
 };
 
@@ -36,12 +30,12 @@ export const getLatestTransaction = (_, res, next) => {
         const transaction = lastBlock?.transactions?.at(-1) ?? null;
 
         if (!transaction) {
-            return sendResponse(res, "No transaction was found", 404);
+            return handleErrorResponse(next, "No transaction was found", 404);
         }
 
-        sendResponse(res, "Transaction found", 200, transaction);
-    } catch (err) {
-        handleInternalError(next);
+        handleResponse(res, "Transaction found", 200, transaction);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve latest transaction");
     }
 };
 
@@ -54,12 +48,12 @@ export const getTransactionsInBlock = (req, res, next) => {
         const transactions = block?.transactions ?? null;
 
         if (!transactions) {
-            return sendResponse(res, "No transactions were found", 404);
+            return handleErrorResponse(next, "No transactions were found", 404);
         }
 
-        sendResponse(res, "Transactions found", 200, transactions);
-    } catch (err) {
-        handleInternalError(next, err.message);
+        handleResponse(res, "Transactions found", 200, transactions);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve transactions from block");
     }
 };
 
@@ -68,9 +62,9 @@ export const createTransaction = (req, res, next) => {
         const { sender, receiver, payload } = req.body;
 
         if (!sender || !receiver || !payload) {
-            return sendResponse(
-                res,
-                "Missing or invalid fields. Expected `sender`, `receiver`, and `payload`",
+            return handleErrorResponse(
+                next,
+                "Missing or invalid fields. Expected fields `sender`, `receiver`, and `payload`",
                 400
             );
         }
@@ -82,8 +76,8 @@ export const createTransaction = (req, res, next) => {
         );
         blockchain?.addTransaction(transaction);
 
-        sendResponse(res, "Transaction created", 201, transaction);
-    } catch (err) {
-        handleInternalError(next);
+        handleResponse(res, "Transaction created", 201, transaction);
+    } catch {
+        handleErrorResponse(next, "Failed to send transaction");
     }
 };
