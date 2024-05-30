@@ -1,1 +1,0 @@
-The `router` folder should be used to organize route definitions, grouping related endpoints together. This structure enhances modularity and maintainability by separating route logic into distinct files.

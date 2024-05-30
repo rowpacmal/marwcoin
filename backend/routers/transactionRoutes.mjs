@@ -3,7 +3,7 @@ import {
     getTransactionByHash,
     getLatestTransaction,
     getTransactionsInBlock,
-    createTransaction,
+    createTransaction
 } from "../controllers/transactionsController.mjs";
 
 const transactionRouter = express.Router();

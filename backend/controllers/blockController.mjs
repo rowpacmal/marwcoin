@@ -1,66 +1,56 @@
-import { blockchain } from '../startup.mjs';
-// import Block from '../classes/Block.mjs';
-import ErrorResponse from '../classes/ErrorResponse.mjs';
-import ResponseData from '../classes/ResponseData.mjs';
+import { blockchain } from "../startup.mjs";
+import {
+    handleResponse,
+    handleErrorResponse
+} from "../utils/responseHandlers.mjs";
 
-const findBlock = (prop, param, next) => {
-	const block = blockchain.chain.find((block) => block[prop] === param);
-
-	if (!block) {
-		return next(new ErrorResponse('No block was found', 404));
-	}
-
-	return block;
+const findBlock = (prop, param) => {
+    return blockchain?.chain?.find((block) => block[prop] === param);
 };
 
-export const getAllBlocks = (req, res, next) => {
-	res.status(200).json(new ResponseData('Blocks found', 200, blockchain.chain));
+export const getAllBlocks = (_, res, next) => {
+    try {
+        handleResponse(res, "Blocks found", 200, blockchain.chain);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve blocks");
+    }
 };
 
-export const getLatestBlock = (req, res, next) => {
-	const { numberOfBlock } = req.query;
-	let block;
-
-	if (numberOfBlock) {
-		block = [];
-		for (let i = 0; i < numberOfBlock; i++) {
-			const index = blockchain.chain.length - i;
-			const lastBlock = blockchain.chain[index];
-			lastBlock && block.push(lastBlock);
-		}
-	} else {
-		block = blockchain.getLatestBlock;
-	}
-
-	res.status(200).json(new ResponseData('Block found', 200, block));
+export const getLatestBlock = (_, res, next) => {
+    try {
+        handleResponse(
+            res,
+            "Latest block found",
+            200,
+            blockchain.getLatestBlock
+        );
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve latest block");
+    }
 };
 
 export const getBlockByIndex = (req, res, next) => {
-	const { blockIndex } = req.params;
-	const block = findBlock('index', +blockIndex, next);
+    try {
+        const { blockIndex } = req.params;
+        const block = findBlock("index", +blockIndex);
 
-	block && res.status(200).json(new ResponseData('Block found', 200, block));
+        block
+            ? handleResponse(res, "Block found", 200, block)
+            : handleErrorResponse(next, "Block not found", 404);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve block by index");
+    }
 };
 
 export const getBlockByHash = (req, res, next) => {
-	const { blockHash } = req.params;
-	const block = findBlock('hash', blockHash, next);
+    try {
+        const { blockHash } = req.params;
+        const block = findBlock("hash", blockHash);
 
-	block && res.status(200).json(new ResponseData('Block found', 200, block));
+        block
+            ? handleResponse(res, "Block found", 200, block)
+            : handleErrorResponse(next, "Block not found", 404);
+    } catch {
+        handleErrorResponse(next, "Failed to retrieve block by hash");
+    }
 };
-
-// export const createBlock = (req, res, next) => {
-// 	const data = req.body;
-
-// 	if (!(data instanceof Array)) {
-// 		return next(
-// 			new ErrorResponse('Missing or invalid payload. Expect Array', 400)
-// 		);
-// 	}
-
-// 	const block = Block.mineBlock(blockchain.getLatestBlock, data);
-
-// 	blockchain.chain.push(block);
-
-// 	res.status(201).json(new ResponseData('Block created', 201, block));
-// };
