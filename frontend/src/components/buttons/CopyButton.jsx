@@ -1,5 +1,5 @@
 import { IconCopy, IconCheck } from '@tabler/icons-react';
-import { useCopyState } from '../hooks/useCopyState';
+import { useCopyState } from '../../hooks/useCopyState';
 
 export const CopyButton = ({ value }) => {
 	const { copyClicked, setCopyClicked } = useCopyState();

@@ -1,14 +1,15 @@
-import transactionSvg from '../../assets/transaction_illustration.svg';
+import transactionSvg from '../../assets/illustrations/transaction_illustration.svg';
+import fileSearchingSvg from '../../assets/illustrations/file_searching_illustration.svg';
 import { TableHeader } from '../table/TableHeader';
 import { TableCell } from '../table/TableCell';
 import { Poster } from '../Poster';
 
-export const TransactionTable = ({ transactions }) => {
+export const TransactionTable = ({ transactions, search }) => {
 	return (
 		<>
 			{transactions.length ? (
 				<div className="relative overflow-x-auto max-h-96">
-					<table className="md:w-full w-max text-sm text-left rtl:text-right text-gray-500">
+					<table className="w-full text-sm text-left rtl:text-right text-gray-500">
 						<thead className="text-xs text-gray-800 uppercase bg-sky-50">
 							<tr>
 								<TableHeader title="Transaction Hash" />
@@ -32,12 +33,17 @@ export const TransactionTable = ({ transactions }) => {
 						</tbody>
 					</table>
 				</div>
-			) : (
+			) : search ? (
 				<Poster
 					src={transactionSvg}
 					message={
 						'Eager to uncover the digital trails? Start by searching for transactions...'
 					}
+				/>
+			) : (
+				<Poster
+					src={fileSearchingSvg}
+					message={`Looks like there's nothing to see here yet...`}
 				/>
 			)}
 		</>
