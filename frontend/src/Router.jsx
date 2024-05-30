@@ -14,7 +14,7 @@ import { Contact } from './pages/Contact';
 
 export const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/', 
 		element: <Layout />,
 		errorElement: <NotFound />,
 		children: [
