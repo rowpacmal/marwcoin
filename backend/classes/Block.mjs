@@ -89,6 +89,6 @@ class Block {
 
     // TODO: Need to implement difficulty level adjustment at a later time.
     // Right now the difficulty level is hardcode into the genesis block.
-};
+}
 
 export default Block;
