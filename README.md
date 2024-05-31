@@ -5,6 +5,8 @@
 ![Forks](https://img.shields.io/github/forks/rowpacmal/marwcoin)
 ![Stars](https://img.shields.io/github/stars/rowpacmal/marwcoin)
 
+![image](https://github.com/rowpacmal/marwcoin/assets/143719030/a7f560a7-3def-4421-81fa-83ce37dc262f)
+
 ## Description
 Welcome to MarwCoin, a group project developed as part of the Node.js course at [@Medieinstitutet](https://github.com/Medieinstitutet). MarwCoin is a small demo of a blockchain-based cryptocurrency built with JavaScript, Node.js, Express, React, and various other dependencies. The primary objective of this project is to learn and explore blockchain technology, utilizing Node.js to create a RESTful API.
 
