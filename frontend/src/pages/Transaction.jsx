@@ -7,6 +7,7 @@ export const Transaction = () => {
 		<div className="max-w-7xl mx-auto">
 			<div className="relative flex flex-wrap gap-10 justify-center items-start mb-10 md:px-5 px-8">
 				<TransactionView />
+
 				<AddTransaction />
 			</div>
 		</div>

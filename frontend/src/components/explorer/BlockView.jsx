@@ -1,5 +1,5 @@
 import { BlockInfo } from './BlockInfo';
-import viewBlockSvg from '../../assets/view_block_illustration.svg';
+import viewBlockSvg from '../../assets/illustrations/view_block_illustration.svg';
 import { Poster } from '../Poster';
 
 export const BlockView = ({ block }) => {

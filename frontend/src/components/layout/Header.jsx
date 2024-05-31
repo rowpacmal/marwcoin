@@ -30,7 +30,7 @@ export const Header = () => {
 			<div className={styles.wrapper}>
 				<Link to="/" className={styles.logo + onScroll(styles.hide)}>
 					<img
-						src="./src/assets/Logo3.png"
+						src="./src/assets/marw-logo.png"
 						alt="Marw Logo"
 						width="2408"
 						height="1208"
@@ -48,7 +48,11 @@ export const Header = () => {
 					</button>
 					<ul className={`${styles.ul} ${isOpen ? styles.open : ''}`}>
 						<li className={styles.li}>
-							<NavLink to="/" className={({ isActive }) => onActive(isActive)}>
+							<NavLink
+								to="/"
+								className={({ isActive }) => onActive(isActive)}
+								onClick={isOpen && (() => setIsOpen(false))}
+							>
 								Home
 							</NavLink>
 						</li>
@@ -57,6 +61,7 @@ export const Header = () => {
 							<NavLink
 								to="/transaction"
 								className={({ isActive }) => onActive(isActive)}
+								onClick={isOpen && (() => setIsOpen(false))}
 							>
 								Transaction
 							</NavLink>
@@ -66,6 +71,7 @@ export const Header = () => {
 							<NavLink
 								to="/explore"
 								className={({ isActive }) => onActive(isActive)}
+								onClick={isOpen && (() => setIsOpen(false))}
 							>
 								Explore
 							</NavLink>
@@ -75,6 +81,7 @@ export const Header = () => {
 							<NavLink
 								to="/about"
 								className={({ isActive }) => onActive(isActive)}
+								onClick={isOpen && (() => setIsOpen(false))}
 							>
 								About
 							</NavLink>
@@ -84,6 +91,7 @@ export const Header = () => {
 							<NavLink
 								to="/contact"
 								className={({ isActive }) => onActive(isActive)}
+								onClick={isOpen && (() => setIsOpen(false))}
 							>
 								Contact
 							</NavLink>
