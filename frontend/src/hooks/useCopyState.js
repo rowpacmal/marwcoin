@@ -12,4 +12,4 @@ export const useCopyState = () => {
     }, [copyClicked]);
 
     return { copyClicked, setCopyClicked };
-}
+};
