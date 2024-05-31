@@ -1,0 +1,17 @@
+{
+  "name": "marwcoin",
+  "version": "1.0.0",
+  "description": "Team: [@rowpacmal](https://github.com/rowpacmal), [@alcompilor](https://github.com/alcompilor), [@BTK88](https://github.com/BTK88), [@lisce18](https://github.com/lisce18)",
+  "main": "index.js",
+  "scripts": {
+    "init": "npm install && concurrently 'cd backend && npm install' 'cd frontend && npm install'",
+    "start": "npm run init && concurrently 'cd backend && npm start' 'cd frontend && npm start'"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

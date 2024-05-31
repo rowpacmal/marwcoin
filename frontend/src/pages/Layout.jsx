@@ -1,15 +1,15 @@
-import { Footer } from '../components/layout/Footer';
-import { Header } from '../components/layout/Header';
-import { Main } from '../components/layout/Main';
+import { Footer } from "../components/layout/Footer";
+import { Header } from "../components/layout/Header";
+import { Main } from "../components/layout/Main";
 
 export const Layout = () => {
-	return (
-		<>
-			<Header />
+    return (
+        <>
+            <Header />
 
-			<Main />
+            <Main />
 
-			<Footer />
-		</>
-	);
+            <Footer />
+        </>
+    );
 };
